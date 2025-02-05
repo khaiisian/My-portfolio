@@ -342,6 +342,9 @@ form .btn2{
     margin-top: 20px;
 }
 
+nav svg{
+    display: none;
+}
 
 /* Responsive---------------------------------------------------- */
 @media only screen and (max-width: 600px){
@@ -350,7 +353,15 @@ form .btn2{
         align-items: center;
         justify-content: center;
         text-align: center;
+        flex-direction: column-reverse;
+        margin-top: 65px;
     }
+
+    nav li a h1{
+        color: #080808;
+        font-size: 30px;
+    }
+     
 
     .header_img{
         width: 300px;
@@ -363,28 +374,51 @@ form .btn2{
         margin-left: 0;
     }
 
+    .body_text h1{
+        font-size: 25px;
+    }
+
+    .body_text p{
+        font-size: 16px;
+    }
+
     .about-col-1{
         flex-basis: 100%;
+    }
+
+    .about-col-1 img{
+        width: 70%;
+        height: 350px;
+        display: none;
     }
 
     .about-col-2{
         flex-basis: 100%;
     }
 
+    .about-col-2 h1{
+        font-size: 30px;
+    }
+
+    .about-col-2 p{
+        font-size: 14px;
+    }
+
     .tab-links{
+        font-size: 16px;
         margin-right: 20px;
     }
 
-    .tab-titles{
+    /* .tab-titles{
         flex-direction: column;
-    }
+    } */
 
     .project-list{
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
     .project img{
-        height: 200px;
+        height: 400px;
     }
 
     .layer h3{
@@ -422,4 +456,47 @@ form .btn2{
     .copy_right{
         font-size: 14px;
     }
+
+    nav svg{
+        display: block;
+        cursor: pointer;
+        color: #ffffff;
+    }
+
+    nav ul{
+        background-color: #080808;
+        position: fixed;
+        width: 200px;
+        height: 100vh;
+        top: 0;
+        right: -200px;
+        padding-top: 50px;
+        color: #ffffff;
+        transition: width 0.5s;
+        z-index: 1;
+    }
+
+    nav ul li{
+        display: block;
+        margin: 25px;
+    }
+
+
+    nav ul svg{
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        cursor: pointer;
+    }
+
+    nav li a{
+        color: #ffffff;
+    }
+}
+
+
+#msg{
+    color: #080808;
+    margin-top: -40px;
+    display: block;
 }

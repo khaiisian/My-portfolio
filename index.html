@@ -10,13 +10,21 @@
     <div id="header">
         <div class="container">
             <nav>
-                <li><a href="index.html"><h1>Khai Sian Taang</h1></a></li>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                <li><a href="#header"><h1>Khai Sian Taang</h1></a></li>
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <svg onclick="closMenu()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                      </svg>
                 </ul>
+                <svg onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                  </svg>
+
+
             </nav>
             <div class="header_content">
                 <div class="body_text">
@@ -140,12 +148,13 @@
                     <a href="images/Khai Sian Taang - CV FORM (Latest).pdf" class="btn btn2" download="">Download CV</a>
                 </div>
                 <div class="contact-right">
-                    <form action="">
+                    <form name="submit-to-google-sheet">
                         <input type="text" name="Name" placeholder="Your Name">
                         <input type="email" name="Email" placeholder="Your Email">
                         <textarea name="Message" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
                         <input type="submit" value="Send Message" class="btn btn2">
                     </form>
+                    <span id="msg"></span>
                 </div>
             </div>
         </div>
@@ -171,5 +180,34 @@
             document.getElementById(tab).classList.add('active-tab');
         }
     </script>
+
+    <script>
+        function openMenu(){
+            document.getElementById('sidemenu').style.width = '400px';
+        }
+        function closMenu(){
+            document.getElementById('sidemenu').style.width = '0';
+        }
+    </script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyrF-_gaJDLZJXXfmHM1qra4m6sabGZJgFPgDQWVqDRyUwzm4CHLATyd5kwjGYJysTl/exec'
+        const form = document.forms['submit-to-google-sheet']
+
+        const msg = document.getElementById("msg");
+  
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Message Sent Successfully";
+                setTimeout(() => {
+                    msg.innerHTML = "";
+                }, 5000);            
+                form.reset();
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+  </script>
 </body>
 </html>
