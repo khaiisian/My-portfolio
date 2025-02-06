@@ -91,8 +91,8 @@
     <!-- Projects -->
     <div id="portfolio">
         <div class="container">
-            <h1 class="subtitle">My Projects</h1>
-            <div class="project-list">
+            <h1 class="subtitle animate__animated" id="project-title">My Projects</h1>
+            <div class="project-list animate__animated" id="project-list">
                 <div class="project">
                     <img src="images/cinemaregister.png" alt="">
                     <div class="layer">
@@ -159,7 +159,7 @@
                     </div>
                 </div>
             </div>
-            <a href="https://github.com/khaiisian?tab=repositories" class="btn">SEE MORE</a>
+            <a href="https://github.com/khaiisian?tab=repositories" id="see_more" class="btn">SEE MORE</a>
         </div>
     </div>
 
@@ -291,6 +291,9 @@
     setAnimation("header_img", "animate__fadeIn");
     setAnimation("about_img", "animate__fadeIn");
     setAnimation("subtitle", "animate__backInRight");
+    // setAnimation("project-list", "animate__zoomIn");
+    // setAnimation("see_more", "animate__zoomIn");
+    setAnimation("project-title", "animate__fadeInDown");
 
   </script>
 </body>
