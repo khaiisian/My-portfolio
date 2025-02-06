@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
 </head>
 <body>
     <div id="header">
@@ -20,7 +22,7 @@
                         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                       </svg>
                 </ul>
-                <svg onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <svg onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-list" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
                   </svg>
 
@@ -28,10 +30,10 @@
             </nav>
             <div class="header_content">
                 <div class="body_text">
-                    <p>A Passionate Web Developer and Leaner.</p>
-                    <h1>I am <span>Khai Sian Taang</span></h1>
+                    <p class="animate__animated " id="header_txt1">A Passionate Web Developer and Leaner.</p>
+                    <h1 class="animate__animated " id="header_txt2">I am <span>Khai Sian Taang</span></h1>
                 </div>
-                <div class="header_img"></div>
+                <div class="header_img animate__animated " id="header_img"></div>
             </div>
         </div>
     </div>
@@ -41,18 +43,18 @@
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
-                    <img src="images/ME1.jpg" alt="">
+                    <img class="animate__animated" id="about_img" src="images/ME1.jpg" alt="">
                 </div>
                 <div class="about-col-2">
-                    <h1 class="subtitle">About Me</h1>
-                    <p>My name is Khai Sian Taang, an enthuastic Developer who is passionate about coding and solving errors through codes. I enjoy learning new coding technology and techniques. Now I am trying to accquire real-world experience as a developer to further enhance my skills and contribute effectively to a team.</p>
+                    <h1 class="subtitle animate__animated animate__backInRight">About Me</h1>
+                    <p id="about_text" class="animate__animated">My name is Khai Sian Taang, an enthuastic Developer who is passionate about coding and solving errors through codes. I enjoy learning new coding technology and techniques. Now I am trying to accquire real-world experience as a developer to further enhance my skills and contribute effectively to a team.</p>
             
-                    <div class="tab-titles">
+                    <div class="tab-titles animate__animated" id="tab-titles">
                         <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('educations')">Education</p>
+                        <p class="tab-links" onclick="opentab('educationss')">Educations</p>
                     </div>
 
-                    <div class="tab-contents active-tab" id="skills">
+                    <div class="tab-contents active-tab animate__animated" id="skills">
                         <ul>
                             <li><span>Frameworks</span><br>
                                 - Laravel: Proficient in building web applications and working with MVC architecture. <br>
@@ -74,7 +76,7 @@
                         </ul>
                         
                     </div>
-                    <div class="tab-contents" id="educations">
+                    <div class="tab-contents animate__animated animate__backInRight" id="educationss">
                         <ul>
                             <li><span>Level 5 Diploma in Computing </span><br>Currently Attending, 2024-2025</li>
                             <li><span>Level 4 Diploma in Computing </span><br>Completed, 2023-2024</li>
@@ -205,6 +207,9 @@
         </div>
     </div>
 
+    <header id="animatedHeader" class="animate__animated">
+        Welcome to My Website
+    </header>
 
 
     <script>
@@ -225,10 +230,10 @@
 
     <script>
         function openMenu(){
-            document.getElementById('sidemenu').style.width = '400px';
+            document.getElementById('sidemenu').style.right = '0';
         }
         function closMenu(){
-            document.getElementById('sidemenu').style.width = '0';
+            document.getElementById('sidemenu').style.right = '-200px';
         }
     </script>
 
@@ -237,13 +242,14 @@
         const scriptURL = 'https://script.google.com/macros/s/AKfycbyrF-_gaJDLZJXXfmHM1qra4m6sabGZJgFPgDQWVqDRyUwzm4CHLATyd5kwjGYJysTl/exec'
         const form = document.forms['submit-to-google-sheet']
 
-        const msg = document.getElementById("msg");
+        var msg = document.getElementById("msg");
   
         form.addEventListener('submit', e => {
           e.preventDefault()
           fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
                 msg.innerHTML = "Message Sent Successfully";
+                console.log('Success!', response)
                 setTimeout(() => {
                     msg.innerHTML = "";
                 }, 5000);            
@@ -251,6 +257,40 @@
             })
             .catch(error => console.error('Error!', error.message))
         })
+  </script>
+  
+  <script>
+    function setAnimation(div, animation) {
+        document.addEventListener("DOMContentLoaded", function () {
+            const header = document.getElementById(div);
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            header.classList.add(animation);
+                            header.style.opacity = 1;
+                            // header.style.display = "block";
+                        }
+                    });
+                },
+                { threshold: 0.5 } // Adjust the threshold if needed
+            );
+
+            observer.observe(header);
+        });
+
+    }
+    setAnimation("about_text", "animate__backInRight");
+    setAnimation("tab-titles", "animate__backInRight");
+    setAnimation("skills", "animate__backInRight");
+    setAnimation("educations", "animate__backInRight");
+    setAnimation("animatedHeader", "animate__backInLeft");
+    setAnimation("header_txt1", "animate__bounceInDown");
+    setAnimation("header_txt2", "animate__backInLeft");
+    setAnimation("header_img", "animate__fadeIn");
+    setAnimation("about_img", "animate__fadeIn");
+
   </script>
 </body>
 </html>
